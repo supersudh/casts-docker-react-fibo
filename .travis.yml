@@ -20,3 +20,16 @@ after_success:
   - docker push sudhrk/multi-nginx
   - docker push sudhrk/multi-server
   - docker push sudhrk/multi-worker
+
+deploy:
+  provider: elasticbeanstalk
+  region: "us-east-1"
+  app: "casts-docker-react-fibo"
+  env: "casts-docker-react-fibo-env"
+  bucket_name: "elasticbeanstalk-us-east-1-066917571071"
+  bucket_path: "casts-docker-react-fibo"
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key:
+    secure: "$AWS_SECRET_KEY"
